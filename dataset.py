@@ -36,6 +36,7 @@ NEGATIVE_WORDS = [
     "stressed",
     "hate",
     "boring",
+    "anxiety",
 ]
 
 # ---------------------------------------------------------------------
@@ -46,10 +47,24 @@ NEGATIVE_WORDS = [
 SAMPLE_POSTS = [
     "I love this class so much",
     "Today was a terrible day",
-    "Feeling tired but kind of hopeful",
+    "Feeling tired but kind of hopeful", #ambiguous/mixed 
     "This is fine",
     "So excited for the weekend",
     "I am not happy about this",
+    "Can't wait to go out tonight",
+    "I need to lock in",
+    "I am always nonchalant about everything",
+    "That is tuff but I am not going to let it get to me",
+    "I almost crashed out reading that code",
+    "People vibe-coded this and it is not accurate",
+    "You look good 🫣", #ambiguous
+    "It is giving me anxiety", #ambiguous
+    "I love getting stuck in traffic", # sarcasm
+    "Great, another bug in production", # sarcasm
+    "Just what I needed, more delays", # sarcasm
+    "Love that for me 🙄", # sarcasm
+    "Amazing, my laptop crashed again", # sarcasm
+
 ]
 
 # Human labels for each post above.
@@ -65,30 +80,17 @@ TRUE_LABELS = [
     "neutral",   # "This is fine"
     "positive",  # "So excited for the weekend"
     "negative",  # "I am not happy about this"
+    "positive", # "Can't wait to go out tonight"
+    "positive", # "I need to lock in"
+    "neutral", # "I am always nonchalant about everything"
+    "positive", # "That is tuff but I am not going to let it get to me"
+    "negative", # "I almost crashed out reading that code"
+    "negative", # "People vibe-coded this and it is not accurate"
+    "mixed", # "You look good 🫣"
+    "negative", # "It is giving me anxiety"
+    "negative", # "I love getting stuck in traffic"
+    "negative", # "Great, another bug in production"
+    "negative", # "Just what I needed, more delays"
+    "negative", # "Love that for me 🙄"
+    "negative", # "Amazing, my laptop crashed again"
 ]
-
-# TODO: Add 5-10 more posts and labels.
-#
-# Requirements:
-#   - For every new post you add to SAMPLE_POSTS, you must add one
-#     matching label to TRUE_LABELS.
-#   - SAMPLE_POSTS and TRUE_LABELS must always have the same length.
-#   - Include a variety of language styles, such as:
-#       * Slang ("lowkey", "highkey", "no cap")
-#       * Emojis (":)", ":(", "🥲", "😂", "💀")
-#       * Sarcasm ("I absolutely love getting stuck in traffic")
-#       * Ambiguous or mixed feelings
-#
-# Tips:
-#   - Try to create some examples that are hard to label even for you.
-#   - Make a note of any examples that you and a friend might disagree on.
-#     Those "edge cases" are interesting to inspect for both the rule based
-#     and ML models.
-#
-# Example of how you might extend the lists:
-#
-# SAMPLE_POSTS.append("Lowkey stressed but kind of proud of myself")
-# TRUE_LABELS.append("mixed")
-#
-# Remember to keep them aligned:
-#   len(SAMPLE_POSTS) == len(TRUE_LABELS)
