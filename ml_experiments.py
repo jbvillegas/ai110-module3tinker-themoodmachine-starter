@@ -1,17 +1,16 @@
-# ml_experiments.py
-"""
-Simple ML experiments for the Mood Machine lab.
-
-This file uses a "real" machine learning library (scikit-learn)
-to train a tiny text classifier on the same SAMPLE_POSTS and
-TRUE_LABELS that you use with the rule based model.
-"""
-
 from typing import List, Tuple
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+try:
+    from sklearn.feature_extraction.text import CountVectorizer
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import accuracy_score
+except ModuleNotFoundError as exc:
+    raise SystemExit(
+        "Missing dependency: scikit-learn.\n"
+        "Install it in this project environment with one of these commands:\n"
+        "  source .venv/bin/activate && pip install -r requirements.txt\n"
+        "  /Users/villegasjb/Documents/GitHub/ai110-module3tinker-themoodmachine-starter/.venv/bin/python -m pip install scikit-learn"
+    ) from exc
 
 from dataset import SAMPLE_POSTS, TRUE_LABELS
 
@@ -20,17 +19,7 @@ def train_ml_model(
     texts: List[str],
     labels: List[str],
 ) -> Tuple[CountVectorizer, LogisticRegression]:
-    """
-    Train a simple text classifier using bag of words features
-    and logistic regression.
-
-    Steps:
-      1. Convert the texts into numeric vectors using CountVectorizer.
-      2. Fit a LogisticRegression model on those vectors and labels.
-
-    Returns:
-      (vectorizer, model)
-    """
+    
     if len(texts) != len(labels):
         raise ValueError(
             "texts and labels must be the same length. "
@@ -55,12 +44,7 @@ def evaluate_on_dataset(
     vectorizer: CountVectorizer,
     model: LogisticRegression,
 ) -> float:
-    """
-    Evaluate the trained model on a labeled dataset.
-
-    Prints each text with its predicted label and the true label,
-    then returns the overall accuracy as a float between 0 and 1.
-    """
+    
     if len(texts) != len(labels):
         raise ValueError(
             "texts and labels must be the same length. "
@@ -101,12 +85,7 @@ def run_interactive_loop(
     vectorizer: CountVectorizer,
     model: LogisticRegression,
 ) -> None:
-    """
-    Let the user type their own sentences and see the ML model's
-    predicted mood label.
-
-    Type 'quit' or press Enter on an empty line to exit.
-    """
+   
     print("\n=== Interactive Mood Machine (ML model) ===")
     print("Type a sentence to analyze its mood.")
     print("Type 'quit' or press Enter on an empty line to exit.\n")
